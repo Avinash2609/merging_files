@@ -1,0 +1,18 @@
+{
+  "name": "avinash",
+  "version": "1.0.0",
+  "description": "python",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "avi",
+  "license": "ISC",
+  "dependencies": {
+    "csv": "^5.3.2",
+    "csv-parse": "^4.12.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "pandas-js": "^0.2.4"
+  }
+}

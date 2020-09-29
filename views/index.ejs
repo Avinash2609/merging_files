@@ -1,0 +1,75 @@
+<html>
+    <head><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"></head>
+    <title>Merge</title>
+    <body>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+         
+        <div class="container mt-5">
+            <div class="container jumbotron">
+                <h1>MERGING FILES</h1>
+                <h4>merge all the results available in multiple files.</h4>
+            </div>
+        <div class="text-center">
+            <img src="/pics/photo.jpg" alt="hiii" width="80%" height="60%">
+        </div>  
+        
+        <script>
+            var i=1;
+            function myFunction() {
+              if(i<=10){
+                var x = document.createElement("INPUT");
+                x.setAttribute("type", "file");
+                x.setAttribute("name", "file"+i);
+                x.setAttribute("class", "form-control mt-1");
+                x.setAttribute("accept", ".csv");
+                document.activeElement.appendChild(x);
+                i=i+1;
+              }
+              else{
+                  alert("Sorry!! We cannot add more than 10 files");
+              }
+            }
+            function myFunction1(){
+                var element=document.getElementById("b1");
+                element.setAttribute("value","true");
+            }
+            function myFunction2(){
+                var element=document.getElementById("b2");
+                element.setAttribute("value","true");
+            }
+        </script>
+        <form action="/result" method="GET">
+            
+            <div class="text-center">
+                <button class="btn btn-sm btn-info mt-3" type="button" id="demo" onclick="myFunction()">Click to add files</button>
+            <button  class="btn btn-sm btn-success mt-3" type="submit" name="b1"  value="false" onclick="myFunction1()">Download merged file</button>
+            <button  class="btn btn-sm btn-success t mt-3" type="submit" name="b2"  value="false" onclick="myFunction2()">Download Log file</button>
+            </div>
+        </form>
+        </div>
+        <div class="container jumbotron p-1">
+            <h4>Description</h4>
+            <ul>
+                <li>Column names may be different in input files, but first column should be id/roll-num and second column should be marks.</li>
+                <li>Input file(s) may contain duplicate roll numbers so considering the last entry only.
+                    e.g. In Case I, the file A.csv contain two values for roll no 100 so considering only last entry for roll no 100 i.e. 1.</li>
+                <li>
+                    Putting “0” (Zero) for missing values.
+                    <ul>
+                        <li>e.g. In Case I the file A.csv contain no entry for roll no 105 and 106 so putting “0” (Zero) in output file in Column “A”.</li>
+                        <li>e.g. In Case I the file C.csv contain no entry for roll no 102 so putting “0” (Zero) in output file in Column “C”.</li>
+                    </ul>
+                </li>    
+                <li>In Case II, If only one input file is present, then removing duplicate entries and considering only last entry.</li>
+                <li>Marks will be of numeric type (Except for missing value). For the non-numeric value of marks, making the entry of File Name, Roll No and Marks in the log file.</li>
+
+            </ul>
+        </div>  
+        <div class="text-center mb-5">
+            Created By: Avinash Jindal (101803002)
+        </div>
+    </body>
+
+</html>
