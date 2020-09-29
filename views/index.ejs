@@ -40,10 +40,13 @@
                 element.setAttribute("value","true");
             }
         </script>
-        <form action="/result" method="GET">
-            
+        <form action="/result" method="POST" enctype="multipart/form-data">
+            <h4 class="mt-4">
+                Can choose multiple files at once
+            </h4>
+            <input class="form-control form-group" type="file" name="myfiles" accept=".csv" multiple>
             <div class="text-center">
-                <button class="btn btn-sm btn-info mt-3" type="button" id="demo" onclick="myFunction()">Click to add files</button>
+                <!-- <button class="btn btn-sm btn-info mt-3" type="button" id="demo" onclick="myFunction()">Click to add files</button> -->    
             <button  class="btn btn-sm btn-success mt-3" type="submit" name="b1"  value="false" onclick="myFunction1()">Download merged file</button>
             <button  class="btn btn-sm btn-success t mt-3" type="submit" name="b2"  value="false" onclick="myFunction2()">Download Log file</button>
             </div>

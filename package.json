@@ -4,15 +4,22 @@
   "description": "python",
   "main": "index.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "avi",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "csv": "^5.3.2",
     "csv-parse": "^4.12.0",
+    "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
+    "fs": "0.0.1-security",
+    "mongoose": "^5.10.7",
+    "multer": "^1.4.2",
     "pandas-js": "^0.2.4"
   }
 }
