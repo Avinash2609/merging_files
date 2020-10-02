@@ -9,7 +9,6 @@ for p in sys.argv[1:]:
         dframes.append(pd.read_csv(StringIO(p),sep=","))
    except:
         print("Unable to read a file no. ")
-        pass
 
 for df in dframes:
     df.columns=['id','marks']
