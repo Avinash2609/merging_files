@@ -3,7 +3,6 @@ import pandas as pd
 import sys
 import time
 import json
-import copy
 from io import StringIO 
 dframes=[]
 for p in sys.argv[1:]:
@@ -24,8 +23,7 @@ mydf=[]
 for j in range(0,len(dframes)):
     for i in range(0,len(dframes[j])):
         try:
-            x=dframes[j]['marks'][i].copy()
-            dframes[j]['marks'][i]=pd.to_numeric(x)
+            dframes[j].loc[i,'marks']=int(dframes[j].loc[i,'marks'])
         except: 
              mydf.append(["File" + str(j+1),dframes[j].loc[i,'id'],dframes[j].loc[i,'marks']])
              dframes[j].drop(i,inplace=True)    
