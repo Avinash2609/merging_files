@@ -69,9 +69,10 @@ mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.ne
                     var mylist=[]; 
                     mylist.push('./merge.py');
                     mylist=mylist.concat(list);
-                    const process = spawn ('python',mylist);
-                    process.stdout.on('data',data=>{
-                        res.redirect("/final")
+                    res.send(mylist);
+                    // const process = spawn ('python',mylist);
+                    // process.stdout.on('data',data=>{
+                    //     res.redirect("/final")
                         // res.send("success");
                     // res.send(req.body.first);
                 });
@@ -80,9 +81,10 @@ mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.ne
                     var mylist=[];
                     mylist.push('./merge2.py');
                     mylist=mylist.concat(list);
-                    const process = spawn ('python',mylist);
-                    process.stdout.on('data',data=>{
-                        res.redirect("/final")
+                    res.send(mylist);
+                    // const process = spawn ('python',mylist);
+                    // process.stdout.on('data',data=>{
+                    //     res.redirect("/final")
                     // res.send(data);
                     // res.send(req.body.second);
                 });
