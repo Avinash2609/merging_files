@@ -75,7 +75,7 @@ mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.ne
                     //     res.redirect("/final")
                         // res.send("success");
                     // res.send(req.body.first);
-                });
+                // });
                 }
                 else if(req.body.b2){
                     var mylist=[];
@@ -87,7 +87,7 @@ mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.ne
                     //     res.redirect("/final")
                     // res.send(data);
                     // res.send(req.body.second);
-                });
+                // });
                 }
             }
         });
