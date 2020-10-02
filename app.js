@@ -64,11 +64,10 @@ mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.ne
                 ar.forEach(function(object){
                     list.push(object.data);
                 })
-                // res.send(list);
                 const spawn=require('child_process').spawn;
                 if(req.body.b1){
                     var mylist=[]; 
-                    mylist.push(path.join(__dirname + '/merge.py'));
+                    mylist.push('./merge.py');
                     mylist=mylist.concat(list);
                     const process = spawn ('python',mylist);
                     process.stdout.on('data',data=>{
