@@ -73,7 +73,6 @@ mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.ne
                     const process = child_process.spawn ('python',mylist);
                     process.stdout.on('data',data=>{
                         res.send(data.toString());
-                        process.exi
                 });
                     process.stderr.on('data', (data) => {
                     console.log(`error:${data}`);
