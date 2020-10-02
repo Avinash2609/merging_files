@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import pandas as pd
 import sys
+print(sys.executable)
 import time
 import json
 from io import StringIO 
