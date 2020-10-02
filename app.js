@@ -72,7 +72,7 @@ mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.ne
                 const spawn=require('child_process').spawn;
                     const process = spawn ('python',mylist);
                     process.stdout.on('data',data=>{
-                        res.send(data);
+                        res.send(data.toString());
                 });
                 }
                 else if(req.body.b2){
