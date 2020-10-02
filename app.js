@@ -64,12 +64,12 @@ mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.ne
                 ar.forEach(function(object){
                     list.push(object.data);
                 })
-                const spawn=require('child_process').spawn;
                 if(req.body.b1){
                     var mylist=[]; 
                     mylist.push('./merge.py');
                     mylist=mylist.concat(list);
                     // res.send(mylist);
+                const spawn=require('child_process').spawn;
                     const process = spawn ('python',mylist);
                     process.stdout.on('data',data=>{
                         res.send(data);
@@ -80,6 +80,7 @@ mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.ne
                     mylist.push('./merge2.py');
                     mylist=mylist.concat(list);
                     res.send(mylist);
+                // const spawn=require('child_process').spawn;
                     // const process = spawn ('python',mylist);
                     // process.stdout.on('data',data=>{
                     // res.send(data);
@@ -88,6 +89,17 @@ mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.ne
             }
         });
     });
+
+    app.use((req, res, next) => {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader(
+          'Access-Control-Allow-Headers',
+          'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+        );
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
+      
+        next();
+      });
 
 app.get("/",function(req,res){
     res.render("index");
