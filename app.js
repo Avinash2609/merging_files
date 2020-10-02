@@ -59,6 +59,7 @@ mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.ne
             if (err) { 
                 console.log(err); 
             } else {
+                objects.save();
                 var list=[];
                 var ar=objects.img;
                 ar.forEach(function(object){
