@@ -68,11 +68,11 @@ mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.ne
                 const spawn=require('child_process').spawn;
                 if(req.body.b1){
                     var mylist=[]; 
-                    mylist.push('./merge.py');
+                    mylist.push(path.join(__dirname + '/merge.py'));
                     mylist=mylist.concat(list);
                     const process = spawn ('python',mylist);
                     process.stdout.on('data',data=>{
-                        res.send("success");
+                        res.send(data);
                     // res.send(req.body.first);
                 });
                 }
@@ -82,7 +82,7 @@ mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.ne
                     mylist=mylist.concat(list);
                     const process = spawn ('python',mylist);
                     process.stdout.on('data',data=>{
-                    res.send("success");
+                    res.send(data);
                     // res.send(req.body.second);
                 });
                 }
