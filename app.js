@@ -66,7 +66,7 @@ mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.ne
                 })
                 if(req.body.b1){
                     var mylist=[]; 
-                    mylist.push('./merge.py');
+                    mylist.push( path.join(__dirname, '/merge.py'));
                     mylist=mylist.concat(list);
                     // res.send(mylist);
                 const spawn=require('child_process').spawn;
@@ -74,6 +74,9 @@ mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.ne
                     process.stdout.on('data',data=>{
                         res.send(data.toString());
                 });
+                    process.stderr.on('data', (data) => {
+                    console.log(`error:${data}`);
+                 });
                 }
                 else if(req.body.b2){
                     var mylist=[];
