@@ -2,10 +2,11 @@ import pandas as pd
 import sys
 import time
 import json
+from io import StringIO 
 dframes=[]
 for p in sys.argv[1:]:
    try: 
-        dframes.append(pd.read_csv(p))
+       dframes.append(pd.read_csv(StringIO(p),sep=","))
    except:
         # print("Unable to read a file no. ",p)
         pass
@@ -29,7 +30,7 @@ for j in range(0,len(dframes)):
 mydf=pd.DataFrame(mydf)
 mydf.columns=['Filename','Roll No','Marks']
 log="log"+ str(time.time()) +".csv"
-# mydf.to_csv(log,mode='a',header=True,index=False)
+# second=mydf.to_csv(log,mode='a',header=True,index=False)
 
 dfs = [df.set_index(['id']) for df in dframes]
 dfs = pd.concat(dfs, axis=1).reset_index()

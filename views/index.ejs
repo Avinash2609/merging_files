@@ -16,21 +16,21 @@
         </div>  
         
         <script>
-            var i=1;
-            function myFunction() {
-              if(i<=10){
-                var x = document.createElement("INPUT");
-                x.setAttribute("type", "file");
-                x.setAttribute("name", "file"+i);
-                x.setAttribute("class", "form-control mt-1");
-                x.setAttribute("accept", ".csv");
-                document.activeElement.appendChild(x);
-                i=i+1;
-              }
-              else{
-                  alert("Sorry!! We cannot add more than 10 files");
-              }
-            }
+            // var i=1;
+            // function myFunction() {
+            //   if(i<=10){
+            //     var x = document.createElement("INPUT");
+            //     x.setAttribute("type", "file");
+            //     x.setAttribute("name", "file"+i);
+            //     x.setAttribute("class", "form-control mt-1");
+            //     x.setAttribute("accept", ".csv");
+            //     document.activeElement.appendChild(x);
+            //     i=i+1;
+            //   }
+            //   else{
+            //       alert("Sorry!! We cannot add more than 10 files");
+            //   }
+            // }
             function myFunction1(){
                 var element=document.getElementById("b1");
                 element.setAttribute("value","true");
@@ -45,7 +45,7 @@
                 Can choose multiple files at once
             </h4>
             <input class="form-control form-group" type="file" name="myfiles" accept=".csv" multiple>
-            <div class="text-center">
+                <div class="text-center">
                 <!-- <button class="btn btn-sm btn-info mt-3" type="button" id="demo" onclick="myFunction()">Click to add files</button> -->    
             <button  class="btn btn-sm btn-success mt-3" type="submit" name="b1"  value="false" onclick="myFunction1()">Download merged file</button>
             <button  class="btn btn-sm btn-success t mt-3" type="submit" name="b2"  value="false" onclick="myFunction2()">Download Log file</button>

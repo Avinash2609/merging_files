@@ -2,16 +2,20 @@ var express = require('express')
 var app = express() 
 var bodyParser = require('body-parser'); 
 var mongoose = require('mongoose');
+var mongodb=require('mongodb');
 app.use(express.static("public")); 
 
 var fs = require('fs'); 
 var path = require('path'); 
 require('dotenv/config'); 
 
+const converter = require('json-2-csv');
+const csv = require('csv-parser');
+
 // Connecting to the database 
 mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.net/Mergingfiles?retryWrites=true&w=majority", 
-	{ useNewUrlParser: true, useUnifiedTopology: true }, err => { 
-		console.log('database connected') 
+	{ useNewUrlParser: true, useUnifiedTopology: true }, (err,client)=> { 
+        console.log('database connected') ;     
     }); 
     
     app.use(bodyParser.urlencoded({ extended: false })) 
@@ -38,31 +42,52 @@ mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.ne
     var imgModel = require('./model'); 
 
     app.post('/result', upload.array('myfiles',10), (req, res, next) => { 
-        const files=req.files;
-        var list=[];
-        files.forEach(function(file){
-            list.push(file.path);
-        })
-        const spawn=require('child_process').spawn;
-        if(req.body.b1){
-            var mylist=[];
-            mylist.push('./merge.py');
-            mylist=mylist.concat(list);
-            const process = spawn ('python',mylist);
-            process.stdout.on('data',data=>{
-            res.send(data)
-        });
+
+        var obj=[];
+        req.files.forEach(function(file){
+        console.log(file.filename);            
+        var xyz={ 
+            data: fs.readFileSync(path.join(__dirname + '/uploads/' + file.filename)), 
+            contentType: 'csv'
+        } ;
+        obj.push(xyz);
+      });
+        var final={
+            img:obj
         }
-        else if(req.body.b2){
-            var mylist=[];
-            mylist.push('./merge2.py');
-            mylist=mylist.concat(list);
-            const process = spawn ('python',mylist);
-            // const process = spawn ('python',['./merge2.py',req.files.file1,req.files.file2,req.files.file3,req.files.file4,req.files.file5,req.files.file6,req.files.file7,req.files.file8,req.files.file9,req.files.file10]);    
-            process.stdout.on('data',data=>{
-            res.send(data)
+       imgModel.create(final, (err, objects) => { 
+            if (err) { 
+                console.log(err); 
+            } else {
+                var list=[];
+                var ar=objects.img;
+                ar.forEach(function(object){
+                    list.push(object.data);
+                })
+                
+                const spawn=require('child_process').spawn;
+                if(req.body.b1){
+                    var mylist=[]; 
+                    mylist.push('./merge.py');
+                    mylist=mylist.concat(list);
+                    const process = spawn ('python',mylist);
+                    process.stdout.on('data',data=>{
+                        res.send(data)
+                    // res.send(req.body.first);
+                });
+                }
+                else if(req.body.b2){
+                    var mylist=[];
+                    mylist.push('./merge2.py');
+                    mylist=mylist.concat(list);
+                    const process = spawn ('python',mylist);
+                    process.stdout.on('data',data=>{
+                    res.send(data)
+                    // res.send(req.body.second);
+                });
+                }
+            }
         });
-        }
     });
 
 app.get("/",function(req,res){
@@ -81,3 +106,5 @@ if (port == null || port == "") {
 app.listen(port,function(){
     console.log("server has been started");
 })
+
+// const process = spawn ('python',['./merge2.py',req.files.file1,req.files.file2,req.files.file3,req.files.file4,req.files.file5,req.files.file6,req.files.file7,req.files.file8,req.files.file9,req.files.file10]);    

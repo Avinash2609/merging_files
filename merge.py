@@ -2,12 +2,13 @@ import pandas as pd
 import sys
 import time
 import json
+from io import StringIO 
 dframes=[]
 for p in sys.argv[1:]:
    try: 
-        dframes.append(pd.read_csv(p))
+        dframes.append(pd.read_csv(StringIO(p),sep=","))
    except:
-        # print("Unable to read a file no. ",p)
+        print("Unable to read a file no. ")
         pass
 
 for df in dframes:
@@ -35,7 +36,7 @@ dfs = [df.set_index(['id']) for df in dframes]
 dfs = pd.concat(dfs, axis=1).reset_index()
 dfs.fillna(value=0,inplace=True)   
 result= "result"+ str(time.time()) +".csv"    
-# dfs.to_csv(result,mode='a',header=True,index=False)
+# first=dfs.to_csv(result,mode='a',header=True,index=False)
 
 with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
     print(dfs)
