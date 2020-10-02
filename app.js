@@ -72,28 +72,22 @@ mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.ne
                     // res.send(mylist);
                     const process = spawn ('python',mylist);
                     process.stdout.on('data',data=>{
-                        res.redirect("/final")
-                        res.send("success");
+                        res.send(data);
                 });
                 }
                 else if(req.body.b2){
                     var mylist=[];
                     mylist.push('./merge2.py');
                     mylist=mylist.concat(list);
-                    // res.send(mylist);
-                    const process = spawn ('python',mylist);
-                    process.stdout.on('data',data=>{
-                        res.redirect("/final")
-                    res.send(data);
+                    res.send(mylist);
+                    // const process = spawn ('python',mylist);
+                    // process.stdout.on('data',data=>{
+                    // res.send(data);
                 });
                 }
             }
         });
     });
-
-app.get("/final",function(req,res){
-    res.send("data")
-})
 
 app.get("/",function(req,res){
     res.render("index");
