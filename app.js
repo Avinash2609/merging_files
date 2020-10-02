@@ -83,7 +83,7 @@ mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.ne
                     // const process = spawn ('python',mylist);
                     // process.stdout.on('data',data=>{
                     // res.send(data);
-                });
+                // });
                 }
             }
         });
