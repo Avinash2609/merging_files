@@ -5,6 +5,8 @@ var mongoose = require('mongoose');
 var mongodb=require('mongodb');
 app.use(express.static("public")); 
 
+var pd=require("node-pandas");
+
 var fs = require('fs'); 
 var path = require('path'); 
 require('dotenv/config'); 
@@ -67,7 +69,7 @@ mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.ne
                 })
                 if(req.body.b1){
                     var mylist=[]; 
-                    mylist.push( path.join(__dirname + '/merge.py'));
+                    mylist.push( path.join(__dirname + '/demo.py'));
                     mylist=mylist.concat(list);
                     // res.send(mylist);
                 const child_process=require('child_process');
