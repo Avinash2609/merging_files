@@ -71,9 +71,8 @@ mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.ne
                     var mylist=[]; 
                     mylist.push(('./merge.py'));
                     mylist=mylist.concat(list);
-                    // res.send(mylist);
-                const child_process=require('child_process');
-                    const process = child_process.spawn ('python',mylist);
+                    const child_process=require('child_process');
+                    const process = child_process.spawn (path.join(__dirname + '/myenv/Scripts/python'),mylist);
                     process.stdout.on('data',data=>{
                         res.send(data);
                 });
@@ -91,7 +90,7 @@ mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.ne
                     mylist=mylist.concat(list);
                     // res.send(mylist);
                 const spawn=require('child_process').spawn;
-                    const process = spawn ('python',mylist);
+                    const process = spawn (path.join(__dirname + '/myenv/Scripts/python'),mylist);
                     process.stdout.on('data',data=>{
                     res.send(data);
                 });
@@ -129,3 +128,5 @@ app.listen(port,function(){
 })
 
 // const process = spawn ('python',['./merge2.py',req.files.file1,req.files.file2,req.files.file3,req.files.file4,req.files.file5,req.files.file6,req.files.file7,req.files.file8,req.files.file9,req.files.file10]);    
+// to activate env: myenv\Scripts\activate
+//tio deactivate: deactivate
