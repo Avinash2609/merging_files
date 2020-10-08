@@ -15,6 +15,7 @@ app.set("view engine", "ejs");
 var fs = require('fs'); 
 var path = require('path'); 
 var multer = require('multer'); 
+const options = require('dotenv/lib/env-options');
 require('dotenv/config'); 
 
 // Connecting to the database 
@@ -67,7 +68,7 @@ var imgModel = require(path.join(__dirname + '/model'));
                     mylist=mylist.concat(list);
                     const child_process=require('child_process');
 
-                    const process = child_process.spawn ('./myenv/Scripts/python.exe',mylist);
+                    const process = child_process.spawn ('./myenv/Scripts/python.exe',mylist,options);
                     process.stdout.on('data',data=>{
                         res.send("success");
                 });
@@ -81,10 +82,9 @@ var imgModel = require(path.join(__dirname + '/model'));
                 }
                 else if(req.body.b2){
                     var mylist=[];
-                    mylist.push('./merge2.py');
+                    mylist.push('./demo.py');
                     mylist=mylist.concat(list);
                 const spawn=require('child_process').spawn;
-                spawn ('./myenv/Scripts/activate');
                     const process = spawn ('python',mylist);
                     process.stdout.on('data',data=>{
                     res.send(data);
