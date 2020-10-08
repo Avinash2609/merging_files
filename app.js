@@ -68,7 +68,7 @@ var imgModel = require(path.join(__dirname + '/model'));
                     const child_process=require('child_process');
                     const process = child_process.spawn (('./myenv/Scripts/python'),mylist);
                     process.stdout.on('data',data=>{
-                        res.send(data);
+                        res.send("success");
                 });
                     process.stderr.on('data', (data) => {
                     console.log(`error:${data}`);
