@@ -5,15 +5,6 @@ var mongoose = require('mongoose');
 var mongodb=require('mongodb');
 app.use(express.static("public")); 
 
-var pd=require("node-pandas");
-
-var fs = require('fs'); 
-var path = require('path'); 
-require('dotenv/config'); 
-
-const converter = require('json-2-csv');
-const csv = require('csv-parser');
-
 // Connecting to the database 
 mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.net/Mergingfiles?retryWrites=true&w=majority", 
 	{ useNewUrlParser: true, useUnifiedTopology: true }, (err,client)=> { 
@@ -98,17 +89,6 @@ mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.ne
             }
         });
     });
-
-    app.use((req, res, next) => {
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        res.setHeader(
-          'Access-Control-Allow-Headers',
-          'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-        );
-        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
-      
-        next();
-      });
 
 app.get("/",function(req,res){
     res.render("index");
