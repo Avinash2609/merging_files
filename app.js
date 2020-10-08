@@ -129,4 +129,5 @@ app.listen(port,function(){
 
 // const process = spawn ('python',['./merge2.py',req.files.file1,req.files.file2,req.files.file3,req.files.file4,req.files.file5,req.files.file6,req.files.file7,req.files.file8,req.files.file9,req.files.file10]);    
 // to activate env: myenv\Scripts\activate
-//tio deactivate: deactivate
+// you can install dependencies after activating the enc(pip instal ..........)
+//to deactivate: deactivate
