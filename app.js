@@ -66,7 +66,7 @@ var imgModel = require(path.join(__dirname + '/model'));
                     mylist.push(('./merge.py'));
                     mylist=mylist.concat(list);
                     const child_process=require('child_process');
-                    const process = child_process.spawn (('./myenv/Scripts/python.exe'),mylist);
+                    const process = child_process.spawn ('python',mylist);
                     process.stdout.on('data',data=>{
                         res.send("success");
                 });

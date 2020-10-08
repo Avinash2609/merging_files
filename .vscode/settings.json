@@ -1,0 +1,6 @@
+{
+    "python.dataScience.jupyterCommandLineArguments": [
+    ],
+    
+    "python.pythonPath": "./myenv/Scripts/python.exe"
+}
