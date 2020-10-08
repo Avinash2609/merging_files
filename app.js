@@ -11,28 +11,29 @@ mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.ne
         console.log('database connected') ;     
     }); 
     
-    app.use(bodyParser.urlencoded({ extended: false })) 
-    app.use(bodyParser.json()) 
-    
-    // Set EJS as templating engine 
-    app.set("view engine", "ejs"); 
+app.use(bodyParser.urlencoded({ extended: false })) 
+app.use(bodyParser.json()) 
 
-    var fs = require('fs'); 
-    var path = require('path'); 
-    var multer = require('multer'); 
+// Set EJS as templating engine 
+app.set("view engine", "ejs"); 
+
+var fs = require('fs'); 
+var path = require('path'); 
+var multer = require('multer'); 
+require('dotenv/config'); 
+
+var storage = multer.diskStorage({ 
+    destination: (req, file, cb) => { 
+        cb(null, 'uploads') ;
+    }, 
+    filename: (req, file, cb) => { 
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname)) ;
+    } 
+}); 
+
+var upload = multer({ storage: storage }); 
     
-    var storage = multer.diskStorage({ 
-        destination: (req, file, cb) => { 
-            cb(null, 'uploads') ;
-        }, 
-        filename: (req, file, cb) => { 
-            cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname)) ;
-        } 
-    }); 
-    
-    var upload = multer({ storage: storage }); 
-       
-    var imgModel = require('./model'); 
+var imgModel = require('./model'); 
 
     app.post('/result', upload.array('myfiles',10), (req, res, next) => { 
 
@@ -111,3 +112,4 @@ app.listen(port,function(){
 // to activate env: myenv\Scripts\activate
 // you can install dependencies after activating the enc(pip instal ..........)
 //to deactivate: deactivate
+// to clear cache: npm cache clean --force
