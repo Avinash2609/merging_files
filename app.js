@@ -63,7 +63,7 @@ var imgModel = require(path.join(__dirname + '/model'));
                 })
                 if(req.body.b1){
                     var mylist=[]; 
-                    mylist.push(('./merge.py'));
+                    mylist.push(('./demo.py'));
                     mylist=mylist.concat(list);
                     const child_process=require('child_process');
                     const process = child_process.spawn ('python',mylist);
