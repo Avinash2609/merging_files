@@ -5,12 +5,7 @@ var mongoose = require('mongoose');
 var mongodb=require('mongodb');
 app.use(express.static("public")); 
 
-// Connecting to the database 
-mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.net/Mergingfiles?retryWrites=true&w=majority", 
-	{ useNewUrlParser: true, useUnifiedTopology: true }, (err,client)=> { 
-        console.log('database connected') ;     
-    }); 
-    
+
 app.use(bodyParser.urlencoded({ extended: false })) 
 app.use(bodyParser.json()) 
 
@@ -21,6 +16,13 @@ var fs = require('fs');
 var path = require('path'); 
 var multer = require('multer'); 
 require('dotenv/config'); 
+
+// Connecting to the database 
+mongoose.connect("mongodb+srv://Avinash2609:urlencoded@cluster0.qa8fk.mongodb.net/Mergingfiles?retryWrites=true&w=majority", 
+	{ useNewUrlParser: true, useUnifiedTopology: true }, (err,client)=> { 
+        console.log('database connected') ;     
+    }); 
+    
 
 var storage = multer.diskStorage({ 
     destination: (req, file, cb) => { 
@@ -33,7 +35,7 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage }); 
     
-var imgModel = require('./model'); 
+var imgModel = require(path.join(__dirname + '/model')); 
 
     app.post('/result', upload.array('myfiles',10), (req, res, next) => { 
 
