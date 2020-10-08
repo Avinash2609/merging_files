@@ -1,4 +1,5 @@
-from myenv.Lib.sitepackages import pandas as pd
+#!.\myenv\Scripts\python
+import pandas as pd
 import sys
 import time
 import json
