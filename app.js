@@ -43,7 +43,7 @@ var imgModel = require(path.join(__dirname + '/model'));
         req.files.forEach(function(file){
         console.log(file.filename);            
         var xyz={ 
-            data: fs.readFileSync(path.join(__dirname + '/uploads/' + file.filename)), 
+            data: fs.readFileSync(path.join('./uploads/' + file.filename)), 
             contentType: 'csv'
         } ;
         obj.push(xyz);
