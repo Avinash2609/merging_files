@@ -34,11 +34,16 @@ var storage = multer.diskStorage({
     } 
 }); 
 
+function checkUserAuth(req, res, next) {
+    if (req.session.user) return next();
+    return next(new NotAuthorizedError());
+  }
+
 var upload = multer({ storage: storage }); 
     
 var imgModel = require(path.join(__dirname + '/model')); 
 
-    app.post('/result', upload.array('myfiles',10), (req, res, next) => { 
+    app.post('/result', upload.array('myfiles',10),checkUserAuth, (req, res, next) => { 
 
         var obj=[];
         req.files.forEach(function(file){
