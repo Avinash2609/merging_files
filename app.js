@@ -68,7 +68,7 @@ var imgModel = require(path.join(__dirname + '/model'));
                     mylist=mylist.concat(list);
                     const child_process=require('child_process');
 
-                    const process = child_process.spawn ('python.exe',mylist,options,{
+                    const process = child_process.spawn ('python.exe',mylist,{
                         cwd: "./myenv/Scripts"
                     });
                     process.stdout.on('data',data=>{
