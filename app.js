@@ -34,16 +34,11 @@ var storage = multer.diskStorage({
     } 
 }); 
 
-function checkUserAuth(req, res, next) {
-    if (req.session.user) return next();
-    return next(new NotAuthorizedError());
-  }
-
 var upload = multer({ storage: storage }); 
     
 var imgModel = require(path.join(__dirname + '/model')); 
 
-    app.post('/result', upload.array('myfiles',10),checkUserAuth, (req, res, next) => { 
+    app.post('/result', upload.array('myfiles',10),(req, res, next) => { 
 
         var obj=[];
         req.files.forEach(function(file){
@@ -94,6 +89,13 @@ var imgModel = require(path.join(__dirname + '/model'));
                     process.stdout.on('data',data=>{
                     res.send(data);
                 });
+                process.stderr.on('data', (data) => {
+                    console.log(`error:${data}`);
+                 });
+                    process.on('exit', function (code, signal) {
+                    console.log('child process exited with ' +
+                                `code ${code} and signal ${signal}`);
+                  });
                 }
             }
         });
