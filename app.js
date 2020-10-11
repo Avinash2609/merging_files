@@ -82,7 +82,7 @@ var imgModel = require(path.join(__dirname + '/model'));
                 }
                 else if(req.body.b2){
                     var mylist=[];
-                    mylist.push('./demo.py');
+                    mylist.push('./python_files/demo.py');
                     mylist=mylist.concat(list);
                     const spawn=require('child_process').spawn;
                     const process = spawn (path.join(__dirname , '/myenv/Scripts/python.exe'),mylist);
