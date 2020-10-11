@@ -53,9 +53,9 @@ var imgModel = require(path.join(__dirname + '/model'));
             img:obj
         }
        imgModel.create(final, (err, objects) => { 
-            if (err) { 
+                if (err) { 
                 console.log(err); 
-            } else {
+                } else {
                 objects.save();
                 var list=[];
                 var ar=objects.img;
@@ -68,34 +68,34 @@ var imgModel = require(path.join(__dirname + '/model'));
                     mylist=mylist.concat(list);
                     const child_process=require('child_process');
 
-                    const process = child_process.spawn ('python',mylist);
+                    const process = child_process.spawn ('./myenv/Scripts/python',mylist);
                     process.stdout.on('data',data=>{
                         res.send("success");
-                });
+                    });
                     process.stderr.on('data', (data) => {
                     console.log(`error:${data}`);
-                 });
+                    });
                     process.on('exit', function (code, signal) {
                     console.log('child process exited with ' +
                                 `code ${code} and signal ${signal}`);
-                  });
+                    });
                 }
                 else if(req.body.b2){
                     var mylist=[];
                     mylist.push('./merge2.py');
                     mylist=mylist.concat(list);
-                const spawn=require('child_process').spawn;
-                    const process = spawn ('python',mylist);
+                    const spawn=require('child_process').spawn;
+                    const process = spawn ('./myenv/Scripts/python.exe',mylist);
                     process.stdout.on('data',data=>{
                     res.send(data);
-                });
-                process.stderr.on('data', (data) => {
-                    console.log(`error:${data}`);
-                 });
-                    process.on('exit', function (code, signal) {
-                    console.log('child process exited with ' +
-                                `code ${code} and signal ${signal}`);
-                  });
+                    });
+                    process.stderr.on('data', (data) => {
+                        console.log(`error:${data}`);
+                    });
+                        process.on('exit', function (code, signal) {
+                        console.log('child process exited with ' +
+                                    `code ${code} and signal ${signal}`);
+                    });
                 }
             }
         });
