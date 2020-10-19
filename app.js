@@ -68,7 +68,8 @@ var imgModel = require(path.join(__dirname + '/model'));
                     mylist=mylist.concat(list);
                     const child_process=require('child_process');
 
-                    const process = child_process.spawn ( path.join(__dirname ,'/myenv/Scripts/python.exe'),mylist);
+                    // const process = child_process.spawn ( path.join(__dirname ,'/myenv/Scripts/python.exe'),mylist);
+                    const process = child_process.spawn ( python,mylist);
                     process.stdout.on('data',data=>{
                         res.send("success");
                     });
@@ -118,8 +119,8 @@ app.listen(port,function(){
     console.log("server has been started");
 })
 
-// const process = spawn ('python',['./merge2.py',req.files.file1,req.files.file2,req.files.file3,req.files.file4,req.files.file5,req.files.file6,req.files.file7,req.files.file8,req.files.file9,req.files.file10]);    
 // to activate env: myenv\Scripts\activate
 // you can install dependencies after activating the enc(pip instal ..........)
 //to deactivate: deactivate
 // to clear cache: npm cache clean --force
+// Now git bash has command to update the file permission to execute looks like :D git update-index --chmod=+x 'name-of-shell-script'
