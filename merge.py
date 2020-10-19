@@ -1,6 +1,7 @@
-#!/usr/bin/python
+# !/usr/bin/python
 import sys 
 sys.path.insert(0, './myenv/Lib/sitepackages')
+import numpy as np
 import pandas as pd
 import time
 import json
