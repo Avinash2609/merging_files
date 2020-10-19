@@ -1,7 +1,7 @@
 #!/usr/bin/python
+import sys 
 import myenv
 pd=myenv.Lib.sitepackages.pandas
-import sys 
 import time
 import json
 from io import StringIO 
