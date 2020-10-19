@@ -1,4 +1,3 @@
-# !/usr/bin/python
 import sys 
 sys.path.insert(0, './myenv/Lib/sitepackages')
 import numpy as np
