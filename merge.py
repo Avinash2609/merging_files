@@ -1,5 +1,4 @@
-from myenv.Lib import sitepackages
-pd=sitepackages.pandas
+import myenv.Lib.sitepackages.pandas as pd
 import sys
 import time
 import json
