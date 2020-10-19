@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import sys 
-import myenv
-pd=myenv.Lib.sitepackages.pandas
+sys.path.insert(0, './myenv/Lib/sitepackages')
+import pandas as pd
 import time
 import json
 from io import StringIO 
