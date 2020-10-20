@@ -15,7 +15,6 @@ for p in sys.argv[1:]:
         dframes.append(pd.read_csv(StringIO(p),sep=","))
    except:
         print("Unable to read a file no. ")
-
 for df in dframes:
     df.columns=['id','marks']
     df.drop_duplicates(subset=['id'], keep='last',inplace=True)
