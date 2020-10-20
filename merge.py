@@ -3,7 +3,7 @@
 # print("PYTHONPATH:", os.environ.get('PYTHONPATH'))
 # print("PATH:", os.environ.get('PATH'))
 import sys 
-# sys.path.insert(0, './myenv/Lib/sitepackages')
+sys.path.insert(0, './myenv/Lib/site-packages')
 # import numpy as np
 import pandas as pd
 import time
