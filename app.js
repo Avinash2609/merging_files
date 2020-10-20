@@ -69,7 +69,7 @@ var imgModel = require(path.join(__dirname + '/model'));
                     const child_process=require('child_process');
 
                     // const process = child_process.spawn ( path.join(__dirname ,'/myenv/Scripts/python.exe'),mylist);
-                    const process = child_process.spawn ("python3",mylist);
+                    const process = child_process.spawn ("python",mylist);
                     process.stdout.on('data',data=>{
                         res.send(data);
                         // res.json({status: true, message: "", data:JSON.parse(data.toString())});
@@ -87,7 +87,7 @@ var imgModel = require(path.join(__dirname + '/model'));
                     mylist.push('./python_files/demo.py');
                     mylist=mylist.concat(list);
                     const spawn=require('child_process').spawn;
-                    const process = spawn (path.join(__dirname , '/myenv/Scripts/python.exe'),mylist);
+                    const process = spawn (path.join(__dirname , './venv/Scripts/python.exe'),mylist);
                     process.stdout.on('data',data=>{
                     res.send(data);
                     });
